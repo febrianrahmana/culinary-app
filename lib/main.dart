@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 void main() {
   runApp(const MyApp());
@@ -77,7 +79,9 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
         centerTitle: true,
       ),
-      body: Center(
+      body: Container( 
+      padding: const EdgeInsets.all(15.0),
+      child: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Column(
@@ -120,18 +124,28 @@ class _MyHomePageState extends State<MyHomePage> {
               }).toList(),
             ),
             const Text('Morbi accumsan, leo sed hendrerit.', style: TextStyle(fontSize: 16.0)),
-            FilledButton(
-              onPressed: () => {snackBarDebug(context, "Login")}, 
-              child: const Text('Login')
-              ),
-              // TODO: Add padding in between by wrapping
-            OutlinedButton(
-              onPressed: () => {snackBarDebug(context, "Register")}, 
-              child: const Text('Register')
-              ),
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: FilledButton(
+                    onPressed: () => {snackBarDebug(context, "Login")}, 
+                    child: const Text('Login')
+                  ),
+                ),
+                const SizedBox(width: 10.0),
+                // TODO: Add padding in between by wrapping
+                Expanded(
+                  child: OutlinedButton(
+                    onPressed: () => {snackBarDebug(context, "Register")}, 
+                    child: const Text('Register')
+                  ),
+                ),
+              ]
+            )
           ],
         ),
       ),
+      )
     );
   }
 }
