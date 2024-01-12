@@ -19,25 +19,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final nameController = TextEditingController();
 
   @override
-  void dispose() {
-    nameController.dispose();
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Register an account"),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+      body: Form(
+        child: Scrollbar(
+          child:SingleChildScrollView(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(children: [
             const SizedBox(height: 20),
             const Text('Email address'),
             const SizedBox(height: 10),
@@ -51,7 +43,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             const SizedBox(height: 10),
             const Text('Password'),
             TextFormField(
-              controller: passwordController,
+              // controller: passwordController,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: 'Enter your password',
@@ -103,9 +95,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 );
               },
             ),
-          ],
-        ),
-      ),
+              ],
+            ),
+          ),
+        )
+      )
     );
   }
 }

@@ -21,7 +21,7 @@ class AuthService {
       final User? firebaseUser = userCredential.user;
       if (firebaseUser != null) {
         return UserModel(
-          uid: firebaseUser.uid, 
+          id: firebaseUser.uid, 
           email: firebaseUser.email ?? '',
           name: firebaseUser.displayName ?? '',
         );
@@ -40,6 +40,13 @@ class AuthService {
     }
   } 
 
+  Stream<UserModel> get user {
+    return _firebaseAuth.authStateChanges().map((firebaseUser) {
+      final user = firebaseUser == null ? UserModel.empty : firebaseUser.toUser;
+      return user;
+    });
+  }
+
    ///signOutUser 
   Future<void> signOutUser() async {
       final User? firebaseUser = FirebaseAuth.instance.currentUser;
@@ -48,4 +55,11 @@ class AuthService {
     }
   }
   // ... (other methods)}
+}
+
+extension on User {
+  /// Maps a [firebase_auth.User] into a [User].
+  UserModel get toUser {
+    return UserModel(id: uid, email: email, name: displayName);
+  }
 }

@@ -1,6 +1,6 @@
-# culinary_app
+# Dahar!    
 
-A new Flutter project.
+Project by Team Thorn Hill
 
 ## Getting Started
 

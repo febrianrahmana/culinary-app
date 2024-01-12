@@ -47,14 +47,14 @@ class WelcomeScreen extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                   child: FilledButton(
-                    onPressed: () => {Navigator.pushNamed(context, LoginScreen.id)}, 
+                    onPressed: () => {Navigator.pushReplacementNamed(context, LoginScreen.id)}, 
                     child: const Text('Login')
                   ),
                 ),
                 const SizedBox(width: 10.0),
                 Expanded(
                   child: OutlinedButton(
-                    onPressed: () => {Navigator.pushNamed(context, RegistrationScreen.id)}, 
+                    onPressed: () => {Navigator.pushReplacementNamed(context, RegistrationScreen.id)}, 
                     child: const Text('Register')
                   ),
                 ),

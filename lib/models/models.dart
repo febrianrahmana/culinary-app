@@ -1,36 +1,18 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:equatable/equatable.dart';
 
-class UserModel {
-  String? uid;
+class UserModel extends Equatable {
+  final String? id;
   final String? email;
-  String? password;
+  final String? password;
   final String? name;
 
-  UserModel({this.uid, this.email, this.password, this.name});
+  const UserModel({this.id, this.email, this.password, this.name});
 
-  Map<String, dynamic> toMap() {
-    return {
-      'email': email,
-      'name': name,
-    };
-  }
+  static const empty = UserModel(id:'');
 
-  UserModel.fromDocumentSnapshot(DocumentSnapshot<Map<String, dynamic>> doc)
-      : uid = doc.id,
-        email = doc.data()!["email"],
-        name = doc.data()!["name"];
+  bool get isEmpty => this == UserModel.empty;
+  bool get isNotEmpty => this != UserModel.empty;
 
-  UserModel copyWith({
-    String? uid,
-    String? email,
-    String? password,
-    String? name,
-  }) {
-    return UserModel(
-      uid: uid ?? this.uid,
-      email: email ?? this.email,
-      password: password ?? this.password,
-      name: name ?? this.name,
-    );
-  }
+  @override
+  List<Object?> get props => [id, email, password, name];
 }
