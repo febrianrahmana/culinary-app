@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Culinary App ThornHill'),
     );
   }
 }
@@ -55,18 +56,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -105,22 +95,52 @@ class _MyHomePageState extends State<MyHomePage> {
           // action in the IDE, or press "p" in the console), to see the
           // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
+
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            FlutterCarousel(
+              options: CarouselOptions(
+                showIndicator: true,
+                slideIndicator: const CircularSlideIndicator(),
+                autoPlay: true,
+              ),
+              items: [1,2,3,4].map((i) {
+                return Builder(
+                  builder: (BuildContext context) {
+                    return Container(
+                      width: MediaQuery.of(context).size.width,
+                      margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                      child: Column(
+                        children: <Widget>[
+                          Image.asset('assets/images/photo$i.png'),
+                        ],
+                      )
+                    );
+                  }
+                );
+              }).toList(),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
+            const Text('Morbi accumsan, leo sed hendrerit.', style: TextStyle(fontSize: 16.0)),
+            FilledButton(
+              onPressed: () => {snackBarDebug(context, "Login")}, 
+              child: const Text('Login')
+              ),
+              // TODO: Add padding in between by wrapping
+            OutlinedButton(
+              onPressed: () => {snackBarDebug(context, "Register")}, 
+              child: const Text('Register')
+              ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+}
+
+// Quick function to create snackBar testing for onPressed
+void snackBarDebug(BuildContext context, String caller) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text('$caller called!')
+    )
+  );
 }
