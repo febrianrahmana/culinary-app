@@ -8,7 +8,7 @@ import '../utilities/auth.dart';
 part 'authentication_event.dart';
 part 'authentication_state.dart';
 
-
+// Defining Blocs (State managing with events)
 
 class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
   final AuthService authService = AuthService();

@@ -1,14 +1,9 @@
-import 'dart:async';
-import 'package:culinary_app/features/authentication/authentication_flow.dart';
-import 'package:culinary_app/features/authentication/login/login_screen.dart';
-import 'package:culinary_app/features/authentication/registration/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'auth_gate.dart';
 import 'firebase_options.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -28,40 +23,43 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Dahar'),
+      home: const AuthGate(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
+// Below is unused for this branch
 
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
+// class MyHomePage extends StatefulWidget {
+//   const MyHomePage({super.key, required this.title});
 
-  final String title;
+//   // This widget is the home page of your application. It is stateful, meaning
+//   // that it has a State object (defined below) that contains fields that affect
+//   // how it looks.
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
+//   // This class is the configuration for the state. It holds the values (in this
+//   // case the title) provided by the parent (in this case the App widget) and
+//   // used by the build method of the State. Fields in a Widget subclass are
+//   // always marked "final".
 
-class _MyHomePageState extends State<MyHomePage> {
+//   final String title;
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Dahar',
-      home: const AuthenticationFlow(),
-      routes: {
-        LoginScreen.id: (context) => LoginScreen(),
-        RegistrationScreen.id: (context) => RegistrationScreen()
-      }
-    );
-  }
-}
+//   @override
+//   State<MyHomePage> createState() => _MyHomePageState();
+// }
+
+// class _MyHomePageState extends State<MyHomePage> {
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Dahar',
+//       home: const AuthenticationFlow(),
+//       routes: {
+//         LoginScreen.id: (context) => LoginScreen(),
+//         RegistrationScreen.id: (context) => RegistrationScreen()
+//       }
+//     );
+//   }
+// }

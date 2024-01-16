@@ -7,6 +7,8 @@ abstract class AuthenticationEvent {
  
 }
 
+// Defining events that would be passed to the Bloc
+
 class SignUpUser extends AuthenticationEvent {
   final String name;
   final String email;

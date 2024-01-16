@@ -31,6 +31,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             padding: const EdgeInsets.all(15.0),
             child: Column(children: [
             const SizedBox(height: 20),
+            const Text('Full name'),
+            const SizedBox(height: 10),
+            TextFormField(
+              controller: nameController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Enter your name',
+              ),
+            ),
+            const SizedBox(height: 10),
             const Text('Email address'),
             const SizedBox(height: 10),
             TextFormField(
@@ -43,12 +53,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             const SizedBox(height: 10),
             const Text('Password'),
             TextFormField(
-              // controller: passwordController,
+              controller: passwordController,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: 'Enter your password',
               ),
-              obscureText: false,
+              obscureText: true,
             ),
             const SizedBox(height: 20),
             BlocConsumer<AuthenticationBloc, AuthenticationState>(
